@@ -40,7 +40,23 @@ myOtherShirt['type'] = 'spandex';
 // #5 Create an object that tracks a count of animals in a zoo.  Call it 'zoo'
 // The key should be the animal name(string) and the value should be how many there are.
 // Our zoo has 8 monkeys, 4 giraffes and 2 elephants
-var zoo = {}
+var zoo = {};
+
+zoo.monkeys = {};
+zoo.monkeys.name = "monkeys";
+zoo.monkeys.value = 8;
+
+zoo.giraffes = {};
+zoo.giraffes.name = "giraffes";
+zoo.giraffes.value = 4;
+
+zoo.elephants = {};
+zoo.elephants.name = "elephants";
+zoo.elephants.value = 2;
+
+console.log("Our zoo has "+zoo.monkeys.value+" "+zoo.monkeys.name+", "+zoo.giraffes.value+" "+zoo.giraffes.name+" and "+zoo.elephants.value+" "+zoo.elephants.name);
+
+
 
 // #6 Loop through this object and change all keys that start with the letter s to have a value of 's'
 
@@ -87,14 +103,20 @@ if (arguments.length === 0) {
 }
 
 // #10 Write a function called removeItem that takes in an array of strings, and a string.
-function removeItem(array, rm) {
-	for(var i = 0; i < array.length; i++) {
-		if(array[i] === rm) {
-			array.splice(i,1);
-		}
-		return array;
+function removeItem(array, itemRemove, times) {
+	times = times || 10;
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === itemRemove) {
+      array.splice(i, 1);
+			i--;
+			times--;
+			if(times<=0) break;
+    }
 	}
-}
+    return array;
+  }
+
+
 
 
 // removeItem(['A','B','C'], 'A');
@@ -124,16 +146,11 @@ function getValueOfProperty(object, propertyname) {
 // and returns an object with a message, author, and timestamp, that is
 // the current time as a Date object
 function makeChatMessage(message, author) {
-	return {
-		message: message,
-		author: author,
-		timestamp: function() {
-			var currTime = new Date();
-			var timestamp = currTime.getTime();
-			return timestamp;
-		}
-	}
+	var currTime = new Date();
+	var currTimestamp = currTime.getTime();
+	return {message, author, currTimestamp}
 }
+
 
 // #14 Create a function called coderTest that takes in an object that is a person. It looks to see if the person’s name is Jeremy and then changes the person object to have a property called lovesCode with a value of 10.  If their name is Brack set lovesCode to 0.  otherwise set lovesCode to 5.
 function coderTest(object) {
@@ -173,7 +190,11 @@ function outside(temperature, humidity, cloudiness) {
 
 // #16 Create a function called callerBack that takes in a function (holla) and a string parameter(back) and invokes it(holla) with the argument string(back) + ' back'."
 // example - If I call you with 'Give it' you should invoke holla with 'Give it back'
-
-function callerBack(cb, back) {
-	return cb(back) + ' back';
+//
+// function callerBack(cb, back) {
+// 	return cb(back) + ' back';
+// }
+function callerBack(holla, back) {
+	return holla(back) + 'back';
 }
+//whoa
